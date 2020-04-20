@@ -3,15 +3,18 @@ import { VideoListComponent } from './video-list.component';
 import {CommonModule} from '@angular/common';
 import { searchPipe } from 'src/app/services/search.pipe';
 import { FormsModule } from '@angular/forms';
+import { AddVideoComponent } from './add-video.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule],
   declarations: [
     searchPipe,
-    VideoListComponent
+    VideoListComponent,
+    AddVideoComponent
   ],
   exports: [
-    VideoListComponent
+    VideoListComponent,
+    AddVideoComponent
   ],
   providers: []
 })
