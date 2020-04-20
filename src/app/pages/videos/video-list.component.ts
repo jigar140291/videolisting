@@ -22,6 +22,8 @@ export class VideoListComponent implements OnInit{
     categories: Array<category> = [];
     videos = [];
     authors = [];
+    searchQuery: string = "";
+    cloneVideos: any;
 
     constructor(private HttpService: HttpService){}
 
@@ -45,6 +47,7 @@ export class VideoListComponent implements OnInit{
             this.authors = res[1];
 
             this.videos = this.constructVideoList(this.authors);
+            this.cloneVideos = Object.assign(this.videos);
 
             console.log(this.videos);
           }
@@ -111,8 +114,25 @@ export class VideoListComponent implements OnInit{
     }
 
     public formatDate(date){
+      /**
+       * TODO: Pipe can be added instead of function
+       */
       var _date = new Date(date);
-      
       return `${_date.getDate()}.${_date.getMonth()+1}.${_date.getFullYear()}`;
+    }
+
+    public removeEntry(video){
+      console.log('--', video);
+    }
+
+    public onSearch(videos, searchQuery){
+      /**
+       * TODO can use pipe already created one
+       */
+      let video = null;
+      if(searchQuery.length){
+        video = this.videos.filter((video) => video.name.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase()));
+      }
+      this.videos = video || videos;
     }
 }

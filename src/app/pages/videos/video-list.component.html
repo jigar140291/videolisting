@@ -1,3 +1,5 @@
+<input type="text" [(ngModel)]="searchQuery" (keyup)="onSearch(cloneVideos, searchQuery)" />
+
 <table>
     <thead>
         <tr>
@@ -10,13 +12,19 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let video of videos;">
+        <tr *ngFor="let video of videos">
             <td>{{video.name}}</td>
             <td>{{video.authorName}}</td>
             <td>{{getCategories(video.catIds, categories)}}</td>
             <td>{{getQualityForamt(video.formats)}}</td>
             <td>{{formatDate(video.releaseDate)}}</td>
-            <td>Edit, delete</td>
+            <td>
+                <button>Edit</button>
+                <button (click)="removeEntry(video)">Delete</button>
+            </td>
+        </tr>
+        <tr *ngIf="!videos.length">
+            No data Available
         </tr>
     </tbody>
 </table> 
