@@ -18,8 +18,8 @@
         <tr *ngFor="let video of videos | search: searchQuery; let idx=index"> 
             <td>{{video.name}}</td>
             <td>{{video.authorName}}</td>
-            <td>{{getCategories(video.catIds, categories)}}</td>
-            <td>{{getQualityForamt(video.formats)}}</td>
+            <td>{{video.catIds}}</td>
+            <td>{{video.formats}}</td>
             <td>{{video.releaseDate | date: 'dd.MM.yyyy'}}</td>
             <td>
                 <button>Edit</button>

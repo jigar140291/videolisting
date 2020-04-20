@@ -12,6 +12,16 @@ interface category {
   name: string;
 }
 
+interface video {
+  authorId: number;
+  authorName: string;
+  catIds: string;
+  formats: string;
+  releaseDate: string;
+  id: number;
+  name: string;
+}
+
 @Component({
   selector: 'video-list',
   templateUrl: './video-list.component.html',
@@ -46,7 +56,7 @@ export class VideoListComponent implements OnInit{
             this.categories = res[0];
             this.authors = res[1];
 
-            this.videos = this.constructVideoList(this.authors);
+            this.videos = this.constructVideoList(this.authors, this.categories);
 
             console.log(this.videos);
           }
@@ -56,16 +66,24 @@ export class VideoListComponent implements OnInit{
         })
     }
 
-    private constructVideoList(authors: Array<Object>){
+    private constructVideoList(authors, categories){
       let allVideos = [];
       
       authors.forEach((author) => {
         let video = author['videos'];
         if(video.length) {
-          video = video.map((vid) => {
-            vid['authorName'] = author['name'];
-            vid['authorId'] = author['id'];
-            return vid;
+          video = video.map((vid: video) => {
+            let {name, id} = author;
+            let {formats, catIds} = vid;
+
+            let _vid = {
+              authorName: name,
+              authorId: id,
+              formats: this.getQualityForamt(formats),
+              catIds: this.getCategories(catIds, categories)
+            };
+
+            return Object.assign(vid, _vid);
           });
           allVideos = [...allVideos, ...video];
         }  
@@ -102,7 +120,7 @@ export class VideoListComponent implements OnInit{
       return `${maxQuality.key} ${maxQuality.res}`;
     }
 
-    private compareQuality(maxQuality, currentQuality) {
+    private compareQuality(maxQuality, currentQuality) : boolean {
       let maxFormat = maxQuality.res.replace('p','');
       let currentFormat = currentQuality.res.replace('p','');
 
