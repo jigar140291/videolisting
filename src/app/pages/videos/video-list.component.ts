@@ -113,14 +113,6 @@ export class VideoListComponent implements OnInit{
       }
     }
 
-    public formatDate(date){
-      /**
-       * TODO: Pipe can be added instead of function
-       */
-      var _date = new Date(date);
-      return `${_date.getDate()}.${_date.getMonth()+1}.${_date.getFullYear()}`;
-    }
-
     public removeEntry(videos, idx){
       /**
        * Handle it with http request

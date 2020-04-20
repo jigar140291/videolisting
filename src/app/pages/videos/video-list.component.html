@@ -20,7 +20,7 @@
             <td>{{video.authorName}}</td>
             <td>{{getCategories(video.catIds, categories)}}</td>
             <td>{{getQualityForamt(video.formats)}}</td>
-            <td>{{formatDate(video.releaseDate)}}</td>
+            <td>{{video.releaseDate | date: 'dd.MM.yyyy'}}</td>
             <td>
                 <button>Edit</button>
                 <button (click)="removeEntry(videos, idx)">Delete</button>
