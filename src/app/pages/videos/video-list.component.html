@@ -28,6 +28,6 @@
         </tr>
     </tbody>
 </table>
-<div style="padding: 10px; border: 1px solid #ccc;border-top: 0px;" *ngIf="!videos.length">
+<div style="padding: 10px; border: 1px solid #ccc;border-top: 0px;" *ngIf="!(videos | search: searchQuery).length">
     No data Available
 </div>
