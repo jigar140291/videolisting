@@ -1,7 +1,7 @@
 <h1>VManager Demo v0.0.1</h1>
 <div class="search-bar">
     <span>Search Videos:</span>
-    <input type="text" [(ngModel)]="searchQuery" (keyup)="onSearch(cloneVideos, searchQuery)" />
+    <input type="text" [(ngModel)]="searchQuery" />
 </div>
 <table>
     <thead>
@@ -15,7 +15,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let video of videos; let i=idx">
+        <tr *ngFor="let video of videos | search: searchQuery; let idx=index"> 
             <td>{{video.name}}</td>
             <td>{{video.authorName}}</td>
             <td>{{getCategories(video.catIds, categories)}}</td>
@@ -26,8 +26,8 @@
                 <button (click)="removeEntry(videos, idx)">Delete</button>
             </td>
         </tr>
-        <tr *ngIf="!videos.length">
-            No data Available
-        </tr>
     </tbody>
 </table>
+<div style="padding: 10px; border: 1px solid #ccc;border-top: 0px;" *ngIf="!videos.length">
+    No data Available
+</div>

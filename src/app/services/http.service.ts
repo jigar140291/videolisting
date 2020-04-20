@@ -28,9 +28,7 @@ export class HttpService {
             headers: this.getHeader(),
             body: req.params || {}
         });
-        /**
-         * TODO: Add a map to support Observable stream.
-         */
+
         return this.http.request(new Request(options))
             .pipe(map(res => res.json()));
         
