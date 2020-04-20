@@ -65,6 +65,7 @@ export class VideoListComponent implements OnInit{
         if(video.length) {
           video = video.map((vid) => {
             vid['authorName'] = author['name'];
+            vid['authorId'] = author['id'];
             return vid;
           });
           allVideos = [...allVideos, ...video];
@@ -121,14 +122,18 @@ export class VideoListComponent implements OnInit{
       return `${_date.getDate()}.${_date.getMonth()+1}.${_date.getFullYear()}`;
     }
 
-    public removeEntry(video){
-      console.log('--', video);
+    public removeEntry(videos, idx){
+      /**
+       * Handle it with http request
+       */
       var deleteText = confirm("Are you sure you want to delete it!");
       if (deleteText == true) {
-        let categoryParams: requesttype = {
-          method: 'DELETE',
-          endPoint: 'categories'
+        let {authorId, id} = videos;
+        let authorsParams: requesttype = {
+          method: 'POST',
+          endPoint: `authors?id=${authorId}&videos.id=${id}`
         };
+       this.videos.splice(idx, 1);
       }
     }
 

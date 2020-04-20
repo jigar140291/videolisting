@@ -15,7 +15,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let video of videos">
+        <tr *ngFor="let video of videos; let i=idx">
             <td>{{video.name}}</td>
             <td>{{video.authorName}}</td>
             <td>{{getCategories(video.catIds, categories)}}</td>
@@ -23,18 +23,11 @@
             <td>{{formatDate(video.releaseDate)}}</td>
             <td>
                 <button>Edit</button>
-                <button (click)="removeEntry(video)">Delete</button>
+                <button (click)="removeEntry(videos, idx)">Delete</button>
             </td>
         </tr>
         <tr *ngIf="!videos.length">
             No data Available
         </tr>
     </tbody>
-</table> 
-<!-- <ul>
-    <li 
-       *ngFor="let movie of Movies; let first = first; 
-       let last = last" [ngClass]="{ first: first, last: last }">
-         {{ movie.name }}
-    </li>
-  </ul> -->
+</table>
