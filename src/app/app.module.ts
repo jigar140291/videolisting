@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {CommonModule} from '@angular/common';
+
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageModule } from './pages/page.module';
-import { httpService } from './services/http.service';
+import { HttpService } from './services/http.service';
 
 @NgModule({
   declarations: [
@@ -12,10 +15,12 @@ import { httpService } from './services/http.service';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
+    HttpModule,
     PageModule
   ],
-  providers: [httpService],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

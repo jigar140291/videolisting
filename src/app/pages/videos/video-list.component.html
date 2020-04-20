@@ -1,1 +1,29 @@
-<h1> I am Video page</h1>
+<table>
+    <thead>
+        <tr>
+            <td>Video Name</td>
+            <td>Author</td>
+            <td>Category Name</td>
+            <td>Highest Quality format</td>
+            <td>Release Date</td>
+            <td>Options</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let video of videos;">
+            <td>{{video.name}}</td>
+            <td>{{video.authorName}}</td>
+            <td>{{getCategories(video.catIds, categories)}}</td>
+            <td>{{getQualityForamt(video.formats)}}</td>
+            <td>{{formatDate(video.releaseDate)}}</td>
+            <td>Edit, delete</td>
+        </tr>
+    </tbody>
+</table> 
+<!-- <ul>
+    <li 
+       *ngFor="let movie of Movies; let first = first; 
+       let last = last" [ngClass]="{ first: first, last: last }">
+         {{ movie.name }}
+    </li>
+  </ul> -->

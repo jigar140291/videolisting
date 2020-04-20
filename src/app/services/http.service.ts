@@ -1,13 +1,16 @@
 import {Injectable, Inject} from '@angular/core';
 import {Http, Response, RequestOptions, Request, Headers} from '@angular/http';
+import { Observable } from 'rxjs';
+import { map } from "rxjs/operators";
 
-declare let ApiUrl:any;
+@Injectable({
+    providedIn: 'root',
+})
 
-@Injectable()
-export class httpService {
-    constructor(private http:Http) {
-    }
-    readonly apiUrl: string = "";
+export class HttpService {
+    readonly apiUrl: string = "http://localhost:3000";
+
+    constructor(private http:Http) {}
     
     getHeader = () => {
         let headers = new Headers();
@@ -17,13 +20,19 @@ export class httpService {
     };
 
     request = (req) => {
-        let baseUrl = ApiUrl,
-            requestOptions = new RequestOptions({
-                method: req.method,
-                url: `${this.apiUrl}/${req.endPoint}`,
-                body: req.params
-            });
-
-        return this.http.request(new Request(requestOptions));
+        let {method, endPoint} = req;
+        
+        let options = new RequestOptions({
+            method: method,
+            url: `${this.apiUrl}/${endPoint}`,
+            headers: this.getHeader(),
+            body: req.params || {}
+        });
+        /**
+         * TODO: Add a map to support Observable stream.
+         */
+        return this.http.request(new Request(options))
+            .pipe(map(res => res.json()));
+        
     }
 }
