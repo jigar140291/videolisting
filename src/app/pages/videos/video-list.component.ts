@@ -123,6 +123,13 @@ export class VideoListComponent implements OnInit{
 
     public removeEntry(video){
       console.log('--', video);
+      var deleteText = confirm("Are you sure you want to delete it!");
+      if (deleteText == true) {
+        let categoryParams: requesttype = {
+          method: 'DELETE',
+          endPoint: 'categories'
+        };
+      }
     }
 
     public onSearch(videos, searchQuery){

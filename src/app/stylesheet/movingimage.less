@@ -1,0 +1,39 @@
+html{
+    font-family: sans-serif;
+}
+
+.nav-bar{
+    height: 50px;
+    background: #000;
+    padding: 15px 20px;
+    font-family: sans-serif;
+    ul{
+        li{
+            display: inline-block;
+            margin: 15px;
+            color: #afafaf;
+            &.active{
+                color: #fff;
+            }
+        }
+    }
+}
+
+.body-container{
+    padding: 20px 40px;
+    .search-bar{
+        margin-bottom: 15px;
+    }
+    input{
+        margin-left: 15px;
+    }
+    table{
+        tbody{
+            tr{
+                &:nth-child(even) {
+                    background: #dddddd;
+                }
+            }
+        }
+    }
+}

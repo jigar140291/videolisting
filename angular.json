@@ -29,7 +29,8 @@
             ],
             "styles": [
               "src/styles.less",
-              "src/app/stylesheet/reset.less"
+              "src/app/stylesheet/reset.less",
+              "src/app/stylesheet/movingimage.less"
             ],
             "scripts": []
           },

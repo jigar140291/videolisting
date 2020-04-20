@@ -1,5 +1,7 @@
-<input type="text" [(ngModel)]="searchQuery" (keyup)="onSearch(cloneVideos, searchQuery)" />
-
+<div class="search-bar">
+    <span>Search Videos:</span>
+    <input type="text" [(ngModel)]="searchQuery" (keyup)="onSearch(cloneVideos, searchQuery)" />
+</div>
 <table>
     <thead>
         <tr>
