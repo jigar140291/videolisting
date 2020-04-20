@@ -3,18 +3,19 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductListComponent } from './pages/product-list.component';
+import { PageModule } from './pages/page.module';
+import { httpService } from './services/http.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ProductListComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    PageModule
   ],
-  providers: [],
+  providers: [httpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
