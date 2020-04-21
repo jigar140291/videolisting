@@ -4,6 +4,7 @@ import {CommonModule} from '@angular/common';
 import { searchPipe } from 'src/app/services/search.pipe';
 import { FormsModule } from '@angular/forms';
 import { AddVideoComponent } from './add-video.component';
+import { videoService } from './services/video.service';
 
 @NgModule({
   imports: [CommonModule, FormsModule],
@@ -16,6 +17,8 @@ import { AddVideoComponent } from './add-video.component';
     VideoListComponent,
     AddVideoComponent
   ],
-  providers: []
+  providers: [
+    videoService
+  ]
 })
 export class videoPageModule { }
