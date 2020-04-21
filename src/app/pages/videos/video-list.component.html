@@ -1,0 +1,33 @@
+<h1>VManager Demo v0.0.1</h1>
+<div class="search-bar">
+    <span>Search Videos:</span>
+    <input type="text" [(ngModel)]="searchQuery" />
+</div>
+<table>
+    <thead>
+        <tr>
+            <td>Video Name</td>
+            <td>Author</td>
+            <td>Category Name</td>
+            <td>Highest Quality format</td>
+            <td>Release Date</td>
+            <td>Options</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let video of videos | search: searchQuery; let idx=index"> 
+            <td>{{video.name}}</td>
+            <td>{{video.authorName}}</td>
+            <td>{{video.catIds}}</td>
+            <td>{{video.formats}}</td>
+            <td>{{video.releaseDate | date: 'dd.MM.yyyy'}}</td>
+            <td>
+                <button>Edit</button>
+                <button (click)="removeEntry(videos, idx)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div style="padding: 10px; border: 1px solid #ccc;border-top: 0px;" *ngIf="!(videos | search: searchQuery).length">
+    No data Available
+</div>
